@@ -4,16 +4,17 @@
 			<h1 class="header__title">
 				Shortly
 			</h1>
-			<ul class=" header__nav-1">
-				<li><a href="#" class="header__nav-link no-decoration">Features</a></li>
-				<li><a href="#" class="header__nav-link no-decoration">Pricing</a></li>
-				<li><a href="#" class="header__nav-link no-decoration">Resources</a></li>
-			</ul>
-			<button @click="toggleMenu" class="header__menu" v-if="activateMobile">Menu</button>
+
+			<svg @click="toggleMenu" class="header__menu" v-show="isMobile">
+				<use href="../assets/images/menu.svg#menu"></use>
+			</svg>
 		</div>
 
 		<nav v-show="mobile" class="header__nav">
 			<ul class="header__nav-2">
+				<li><a href="#" class="header__nav-link no-decoration">Features</a></li>
+				<li><a href="#" class="header__nav-link no-decoration">Pricing</a></li>
+				<li><a href="#" class="header__nav-link no-decoration">Resources</a></li>
 				<li><a href="#" class="header__nav-link  no-decoration">Login</a></li>
 				<li><a href="#" class="header__nav-link header__nav-link--styled btn no-decoration">Sign up</a></li>
 			</ul>
@@ -26,14 +27,25 @@ export default {
 	data() {
 		return {
 			mobile: true,
-			activateMobile: false,
+			isMobile: false,
+
 		};
 	},
 	methods: {
 		toggleMenu() {
 			this.mobile = !this.mobile;
 		},
+		checkMobile() {
+			if (window.innerWidth < 956) {
+				this.mobile = false;
+				this.isMobile = true;
+			}
+		}
 	},
+	mounted() {
+		this.checkMobile();
+	}
+
 };
 </script>
 
@@ -53,7 +65,8 @@ export default {
 		padding: 1rem;
 	}
 
-	&__title, &__nav-link {
+	&__title,
+	&__nav-link {
 		margin: 1rem;
 	}
 
@@ -63,9 +76,14 @@ export default {
 			list-style: none;
 		}
 
+		&-2 li:nth-child(4) {
+			margin-left: 10em;
+		}
+
 		&-link {
 			color: var(--color-gray-1);
 			padding: 1rem;
+			font-weight: 700;
 
 			&:hover {
 				color: var(--color-primary);
@@ -84,67 +102,99 @@ export default {
 	}
 }
 
-// .header {
-// 	margin: 1.2rem auto;
-// 	padding: 1.5rem;
-// 	display: flex;
-// 	justify-content: space-between;
-// 	&__box {
-// 		display: flex;
-// 		justify-content: space-around;
-// 		flex-basis: 30%;
-// 	}
+@media only screen and (max-width: 68.75em) {
+	.header {
 
-// 	&__title {
-// 		font-weight: 700;
-// 		color: var(--color-darkBlue);
-// 	}
+		&__nav {
+			&-2 li:nth-child(4) {
+				margin-left: unset;
+			}
+		}
+	}
+}
 
-// 	// &__menu {
-// 	// 	display: block;
-// 	// 	padding: 1rem 1.3rem;
-// 	// 	border-radius: var(--border);
-// 	// 	background: var(--color-secondary);
-// 	// 	color: var(--color-white);
-// 	// 	outline: none;
-// 	// 	cursor: pointer;
+@media only screen and (max-width: 60em) {
+	.header {
+		padding: 0.5rem;
+		flex-direction: column;
+		&__nav {
+			display: none;
+		}
 
-// 	// 	&:hover {
-// 	// 		background: var(--color-gray-1);
-// 	// 	}
+		&__box {
+			justify-content: space-between;
+			position: relative;
+			width: 100%;
+			padding: 1rem;
+		}
+	}
+}
 
-// 	// 	&:focus {
-// 	// 		border: 2px solid var(--color-gray);
-// 	// 	}
-// 	// }
+@media only screen and (max-width: 53.125em) {
+	.header {
+		margin: 1.2rem auto;
+		padding: 0.5rem;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+		&__box {
+			display: flex;
+			justify-content: space-between;
+			// position: relative;
+			// width: 100%;
+			// padding: 1rem;
+		}
 
-// 	&__nav {
-// 		// background: var(--color-secondary);
-// 		display: flex;
-// 		// text-align: center;
+		&__title {
+			font-weight: 700;
+			color: var(--color-darkBlue);
+		}
 
-// 		&-1,
-// 		&-2 {
-// 			list-style: none;
-// 			// margin: 2rem auto;
-// 			display: flex;
-// 		}
-// 	}
-// 		&-1 {
-// 			// border-bottom: 1px solid hsl(257deg, 1%, 48%);
-// 		}
+		&__menu {
+			display: block;
+			padding: 1rem 1.3rem;
+			border-radius: var(--border);
+			// background: var(--color-secondary);
+			color: var(--color-white);
+			outline: none;
+			cursor: pointer;
+			width: 2rem;
+			height: 2rem;
 
-// 	// &-link {
 
-// 	// 	display: inline-block;
-// 	// 	color: var(--color-white);
-// 	// 	margin-bottom: 3rem;
-// 	// 	font-weight: 700;
+			&:hover {
+				background: var(--color-gray-1);
+			}
 
-// 	// 	&--styled {
-// 	//     border-radius: var(--pill);
-// 	//     display: block;
-// 	// 	}
-// 	// }
-// }
+			&:focus {
+				border: 2px solid var(--color-gray);
+			}
+		}
+
+		&__nav {
+			display: flex;
+
+			&-1,
+			&-2 {
+				list-style: none;
+				display: flex;
+			}
+		}
+		&-1 {
+			border-bottom: 1px solid hsl(257deg, 1%, 48%);
+		}
+
+		&-link {
+			display: inline-block;
+			color: var(--color-white);
+			margin-bottom: 3rem;
+			font-weight: 700;
+
+			&--styled {
+				border-radius: var(--pill);
+				display: block;
+			}
+		}
+	}
+}
 </style>

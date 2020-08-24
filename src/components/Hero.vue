@@ -111,4 +111,36 @@ export default {};
 	// 	}
 	// }
 }
+
+@media only screen and (max-width: 62.5em) {
+	.hero {
+		&__content {
+			flex-direction: column;
+			margin-left: unset;
+		}
+
+		&__text-box {
+			order: 1;
+		}
+
+		&__title {
+			font-size: 4.5rem;
+		}
+	}
+}
+
+@media only screen and (max-width: 37.5em) {
+	.hero {
+		&__title,
+		&__text {
+			text-align: center;
+		}
+
+		&__btn {
+			width: 50%;
+			text-align: center;
+			display: block;
+		}
+	}
+}
 </style>

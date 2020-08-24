@@ -24,6 +24,7 @@ export default {};
 	border-radius: var(--border);
 	padding: 2.5rem;
 	max-width: 60em;
+	width: 90%;
 	margin: 3rem auto;
 	display: flex;
 	align-items: center;
@@ -32,8 +33,9 @@ export default {};
 	&-input {
 		padding: 0.8em 1.5em;
 		flex: 1;
-		font-size: 1.5rem;
+		font-size: 1.7rem;
 		color: var(--color-gray-1);
+		font-weight: 700;
 	}
 
 	&-input,
@@ -43,6 +45,21 @@ export default {};
 		outline: none;
 		border: none;
 		font-family: Poppins, sans-serif;
+	}
+}
+
+@media only screen and (max-width: 37.5em) {
+	.form {
+		flex-direction: column;
+		width: 80%;
+
+		&-input,
+		&-btn {
+			width: 80%;
+			padding: 1rem 2.5rem;
+		}
+
+		
 	}
 }
 </style>

@@ -4,8 +4,7 @@
 		<app-hero></app-hero>
 		<app-form></app-form>
 		<app-statistics></app-statistics>
-		<!-- Boost your links today Get Started Features Link Shortening Branded Links
-		Analytics Resources Blog Developers Support Company About Our Team Careers Contact -->
+		<app-footer></app-footer>
 	</div>
 </template>
 
@@ -14,6 +13,7 @@ import Header from '@/components/Header.vue';
 import Hero from '@/components/Hero.vue';
 import Form from '@/components/Form.vue';
 import Statistics from '@/components/Statistics.vue';
+import Footer from '@/components/Footer.vue';
 export default {
 	name: 'App',
 	components: {
@@ -21,6 +21,7 @@ export default {
 		appHero: Hero,
 		appForm: Form,
 		appStatistics: Statistics,
+		appFooter: Footer,
 	},
 	title() {
 		return `Shortly | URL shortening API Challenge`;
@@ -29,7 +30,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('https://fonts.google.com/specimen/Poppins');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 // COLORS
 :root {
@@ -60,7 +61,7 @@ html {
 body {
 	font-size: 1.8rem;
 	background: var(--color-white);
-	font-family: Poppins, sans-serif;
+	font-family: 'Poppins', sans-serif;
 	font-weight: 500;
 	position: relative;
 	overflow-x: hidden;
@@ -82,6 +83,8 @@ h1, h2, h3, h4 {
 	margin: 1rem auto;
 	font-weight: 700;
 	font-size: 2rem;
+	cursor: pointer;
+	transition: all .4s;
 
 	&:hover {
 		background: var(--color-gray);

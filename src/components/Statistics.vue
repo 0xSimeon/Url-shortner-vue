@@ -17,7 +17,11 @@
 			</div>
 		</div>
 		<div class="statistics__line"></div>
-		<div class="statistics__cta"></div>
+
+		<div class="statistics__cta">
+			<h3 class="statistics__cta-title">{{ cta.title }}</h3>
+			<a href="#form" class="statistics__cta-btn btn no-decoration">{{ cta.btnText }}</a>
+		</div>
 	</section>
 </template>
 
@@ -47,6 +51,10 @@ export default {
 					img: `fully-customizable.svg`,
 				},
 			],
+			cta: {
+				title: 'Boost your links  today',
+				btnText: 'Get Started',
+			},
 		};
 	},
 };
@@ -55,7 +63,7 @@ export default {
 <style lang="scss" scoped>
 .statistics {
 	background: #eff0f5;
-	padding: 1.3em;
+	padding: 0.07em;
 	position: relative;
 	margin-top: -6em;
 	z-index: -2;
@@ -132,17 +140,91 @@ export default {
 		background: var(--color-primary);
 		z-index: -2;
 
-		top: 73%;
+		top: 59%;
 		left: 50%;
 		transform: translate(-50%, -50%);
 		position: absolute;
 	}
 
 	&__cta {
-		background: var(--color-secondary) url('../assets/images/bg-shorten-desktop.svg') no-repeat;
-		padding: 1.2em;
-		background-size: cover;
-	}
+		height: 100%;
+		background-color: var(--color-secondary);
+		padding: 1.1em;
+		margin-top: 4em;
+		width: 100%;
+		background-image: url('../assets/images/bg-boost-desktop.svg');
+		background-size: 100%;
+		background-repeat: no-repeat;
+		margin-left: -2px;
 
+		&-title {
+			color: var(--color-white);
+			font-size: 4rem;
+			text-align: center;
+			margin-top: 1em;
+		}
+
+		&-btn {
+			display: block;
+			border-radius: var(--pill);
+			margin: 2rem auto;
+			padding: 1.2rem 3.5rem;
+			outline: none;
+			border: none;
+			text-align: center;
+			width: 10%;
+		}
+	}
+}
+
+
+
+@media only screen and (max-width: 53.125em) {
+	.statistics {
+		&__grid {
+			margin-top: 2.5em;
+			flex-direction: column;
+			text-align: center;
+
+			&-1, &-2 {
+				margin-top: 4.5em;
+			}
+
+			& > :not(:first-child) {
+				margin-left: unset;
+			}
+
+			&-img {
+				margin: -3em auto 1em auto;
+			}
+		}
+
+		&__cta {
+
+			&-title {
+				font-size: 3rem; 
+			}
+			&-btn {
+				width: 23%;
+			}
+		}
+
+		&__line {
+			width: 2rem;
+			height: 45%;
+			top: 50%;
+		}
+	}
+}
+
+@media only screen and (max-width: 37.5em) {
+	.statistics {
+		&__cta {
+			padding: .8em;
+			&-btn {
+				width: 50%;
+			}
+		}
+	}
 }
 </style>
