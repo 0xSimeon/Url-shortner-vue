@@ -69,6 +69,7 @@ export default {
 	z-index: -2;
 	max-width: 100%;
 	width: 100%;
+	width: 100%;
 	font-size: 2rem;
 
 	&__content {
@@ -200,9 +201,10 @@ export default {
 		}
 
 		&__cta {
+			width: unset;
 
 			&-title {
-				font-size: 3rem; 
+				font-size: 3rem;
 			}
 			&-btn {
 				width: 23%;
