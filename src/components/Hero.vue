@@ -31,11 +31,15 @@
 </template>
 
 <script>
-export default {};
+
+export default {
+
+};
 </script>
 
 <style lang="scss" scoped>
 .hero {
+	padding-bottom: 8%;
 	&__content {
 		display: flex;
 		margin-left: 5rem;
@@ -140,6 +144,10 @@ export default {};
 			width: 50%;
 			text-align: center;
 			display: block;
+		}
+
+		&__img {
+			margin-left: unset;
 		}
 	}
 }

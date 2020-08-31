@@ -9,26 +9,27 @@
 				<use href="../assets/images/menu.svg#menu"></use>
 			</svg>
 		</div>
-
-		<nav v-show="mobile" class="header__nav">
-			<ul class="header__nav-2">
-				<li><a href="#" class="header__nav-link no-decoration">Features</a></li>
-				<li><a href="#" class="header__nav-link no-decoration">Pricing</a></li>
-				<li><a href="#" class="header__nav-link no-decoration">Resources</a></li>
-				<li><a href="#" class="header__nav-link  no-decoration">Login</a></li>
-				<li><a href="#" class="header__nav-link header__nav-link--styled btn no-decoration">Sign up</a></li>
-			</ul>
-		</nav>
+		<SlideYUpTransition>
+			<nav v-show="mobile" class="header__nav">
+				<ul class="header__nav-list">
+					<li><a href="#" class="header__nav-link no-decoration">Features</a></li>
+					<li><a href="#" class="header__nav-link no-decoration">Pricing</a></li>
+					<li><a href="#" class="header__nav-link no-decoration">Resources</a></li>
+					<li><a href="#" class="header__nav-link  no-decoration">Login</a></li>
+					<li><a href="#" class="header__nav-link header__nav-link--styled btn no-decoration">Sign up</a></li>
+				</ul>
+			</nav>
+		</SlideYUpTransition>
 	</header>
 </template>
 
 <script>
+import { SlideYUpTransition } from 'vue2-transitions';
 export default {
 	data() {
 		return {
 			mobile: true,
 			isMobile: false,
-
 		};
 	},
 	methods: {
@@ -40,12 +41,14 @@ export default {
 				this.mobile = false;
 				this.isMobile = true;
 			}
-		}
+		},
 	},
 	mounted() {
 		this.checkMobile();
-	}
-
+	},
+	components: {
+		SlideYUpTransition,
+	},
 };
 </script>
 
@@ -57,9 +60,12 @@ export default {
 	align-items: center;
 	padding: 2rem;
 
-	&__box,
+	&__box {
+		padding: unset;
+	}
+
 	&__nav-1,
-	&__nav-2 {
+	&__nav-list {
 		display: flex;
 		align-items: center;
 		padding: 1rem;
@@ -72,11 +78,11 @@ export default {
 
 	&__nav {
 		&-1,
-		&-2 {
+		&-list {
 			list-style: none;
 		}
 
-		&-2 li:nth-child(4) {
+		&-list li:nth-child(4) {
 			margin-left: 10em;
 		}
 
@@ -102,11 +108,14 @@ export default {
 	}
 }
 
+hr {
+	display: none;
+}
+
 @media only screen and (max-width: 68.75em) {
 	.header {
-
 		&__nav {
-			&-2 li:nth-child(4) {
+			&-list li:nth-child(4) {
 				margin-left: unset;
 			}
 		}
@@ -158,13 +167,8 @@ export default {
 			color: var(--color-white);
 			outline: none;
 			cursor: pointer;
-			width: 2rem;
-			height: 2rem;
-
-
-			&:hover {
-				background: var(--color-gray-1);
-			}
+			width: 3rem;
+			height: 3rem;
 
 			&:focus {
 				border: 2px solid var(--color-gray);
@@ -173,26 +177,41 @@ export default {
 
 		&__nav {
 			display: flex;
+			background: var(--color-secondary);
+			width: 80%;
+			padding: 0.5rem;
+			justify-content: center;
+			align-items: center;
+			border-radius: var(--border);
 
 			&-1,
-			&-2 {
+			&-list {
 				list-style: none;
 				display: flex;
+				flex-direction: column;
+				width: 100%;
+
+				& li:nth-child(3) {
+					border-bottom: 1px solid #9b8484;
+					width: 100%;
+					margin-bottom: 3rem;
+				}
+
+				& > * {
+					width: 100%;
+					text-align: center;
+				}
 			}
-		}
-		&-1 {
-			border-bottom: 1px solid hsl(257deg, 1%, 48%);
-		}
 
-		&-link {
-			display: inline-block;
-			color: var(--color-white);
-			margin-bottom: 3rem;
-			font-weight: 700;
+			&-link {
+				display: inline-block;
+				color: var(--color-white);
+				margin-bottom: 1rem;
+				font-weight: 700;
 
-			&--styled {
-				border-radius: var(--pill);
-				display: block;
+				&--styled {
+					width: 70%;
+				}
 			}
 		}
 	}

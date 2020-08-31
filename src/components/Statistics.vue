@@ -1,5 +1,7 @@
 <template>
 	<section class="statistics">
+		<app-form></app-form>
+
 		<div class="statistics__content">
 			<h3 class="statistics__title">Advanced Statistics</h3>
 			<p class="statistics__text">
@@ -7,32 +9,36 @@
 				our advanced statistics dashboard.
 			</p>
 		</div>
-		<div class="statistics__grid">
-			<div v-for="(card, index) in cards" :key="index" :class="`statistics__grid-${index}`">
-				<div class="statistics__grid-img">
-					<img :src="require(`../assets/images/icon-${card.img}`)" alt="Shortly Features card icon" />
+		<div class="relative">
+			<div class="statistics__grid">
+				<div v-for="(card, index) in cards" :key="index" :class="`statistics__grid-${index}`">
+					<div class="statistics__grid-img">
+						<img :src="require(`../assets/images/icon-${card.img}`)" alt="Shortly Features card icon" />
+					</div>
+					<h3 class="statistics__grid-title">{{ card.title }}</h3>
+					<p class="statistics__grid-text">{{ card.text }}</p>
 				</div>
-				<h3 class="statistics__grid-title">{{ card.title }}</h3>
-				<p class="statistics__grid-text">{{ card.text }}</p>
 			</div>
+			<div class="statistics__line"></div>
 		</div>
-		<div class="statistics__line"></div>
 
 		<div class="statistics__cta">
 			<h3 class="statistics__cta-title">{{ cta.title }}</h3>
-			<a href="#form" class="statistics__cta-btn btn no-decoration">{{ cta.btnText }}</a>
+			<a href="" class="statistics__cta-btn btn no-decoration" @click.prevent="dummy">{{ cta.btnText }}</a>
 		</div>
 	</section>
 </template>
 
 <script>
+import Form from '@/components/Form.vue';
+
 export default {
 	data() {
 		return {
 			cards: [
 				{
 					title: 'Brand Recognition Boost',
-					text: `your brand recognition with each click. Generic links don’t mean a thing. Branded links
+					text: `Boost your brand recognition with each click. Generic links don’t mean a thing. Branded links
 					help instil confidence in your content.`,
 					img: `brand-recognition.svg`,
 				},
@@ -57,6 +63,10 @@ export default {
 			},
 		};
 	},
+	methods: {},
+	components: {
+		appForm: Form,
+	},
 };
 </script>
 
@@ -65,15 +75,14 @@ export default {
 	background: #eff0f5;
 	padding: 0.07em;
 	position: relative;
-	margin-top: -6em;
-	z-index: -2;
+	margin-top: 2em;
 	max-width: 100%;
 	width: 100%;
 	width: 100%;
 	font-size: 2rem;
 
 	&__content {
-		margin-top: 9em;
+		margin-top: 5em;
 
 		& > * {
 			margin-bottom: 0.5em;
@@ -104,6 +113,7 @@ export default {
 			padding: 1.35em;
 			border-radius: var(--border);
 			flex-basis: 23%;
+			z-index: 2;
 		}
 
 		& > :not(:first-child) {
@@ -139,7 +149,7 @@ export default {
 		width: 80%;
 		height: 0.8em;
 		background: var(--color-primary);
-		z-index: -2;
+		z-index: 1;
 
 		top: 59%;
 		left: 50%;
@@ -151,12 +161,11 @@ export default {
 		height: 100%;
 		background-color: var(--color-secondary);
 		padding: 1.1em;
-		margin-top: 4em;
+		margin: 4em 0 -2px -2px;
 		width: 100%;
 		background-image: url('../assets/images/bg-boost-desktop.svg');
 		background-size: 100%;
 		background-repeat: no-repeat;
-		margin-left: -2px;
 
 		&-title {
 			color: var(--color-white);
@@ -178,8 +187,6 @@ export default {
 	}
 }
 
-
-
 @media only screen and (max-width: 53.125em) {
 	.statistics {
 		&__grid {
@@ -187,7 +194,12 @@ export default {
 			flex-direction: column;
 			text-align: center;
 
-			&-1, &-2 {
+			& > * {
+				padding: 0.8em;
+			}
+
+			&-1,
+			&-2 {
 				margin-top: 4.5em;
 			}
 
@@ -213,7 +225,7 @@ export default {
 
 		&__line {
 			width: 2rem;
-			height: 45%;
+			height: 46%;
 			top: 50%;
 		}
 	}
@@ -222,7 +234,7 @@ export default {
 @media only screen and (max-width: 37.5em) {
 	.statistics {
 		&__cta {
-			padding: .8em;
+			padding: 0.8em;
 			&-btn {
 				width: 50%;
 			}

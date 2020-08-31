@@ -2,7 +2,7 @@
 	<div id="app">
 		<app-header></app-header>
 		<app-hero></app-hero>
-		<app-form></app-form>
+
 		<app-statistics></app-statistics>
 		<app-footer></app-footer>
 	</div>
@@ -11,7 +11,7 @@
 <script>
 import Header from '@/components/Header.vue';
 import Hero from '@/components/Hero.vue';
-import Form from '@/components/Form.vue';
+// import Form from '@/components/Form.vue';
 import Statistics from '@/components/Statistics.vue';
 import Footer from '@/components/Footer.vue';
 export default {
@@ -19,7 +19,7 @@ export default {
 	components: {
 		appHeader: Header,
 		appHero: Hero,
-		appForm: Form,
+		// appForm: Form,
 		appStatistics: Statistics,
 		appFooter: Footer,
 	},
@@ -63,12 +63,15 @@ body {
 	background: var(--color-white);
 	font-family: 'Poppins', sans-serif;
 	font-weight: 500;
-	position: relative;
 	overflow-x: hidden;
 	color: var(--color-gray-1);
+	width: 100%;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
 	color: var(--color-darkViolet);
 }
 
@@ -84,11 +87,22 @@ h1, h2, h3, h4 {
 	font-weight: 700;
 	font-size: 2rem;
 	cursor: pointer;
-	transition: all .4s;
+	transition: all 0.4s;
+	overflow-x: hidden;
 
 	&:hover {
 		background: var(--color-gray);
 	}
+}
+
+.relative {
+	position: relative;
+}
+
+.center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 @media only screen and (max-width: 37.5em) {
