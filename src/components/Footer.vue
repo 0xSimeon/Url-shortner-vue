@@ -35,7 +35,7 @@
 					<svg class="footer__social-icon">
 						<use href="../assets/images/icon-facebook.svg#facebook"></use>
 					</svg>
-					&nbsp;
+					 <span class="sr-only">Facebook</span>
 				</a>
 			</li>
 			<li>
@@ -43,7 +43,7 @@
 					<svg class="footer__social-icon">
 						<use href="../assets/images/icon-twitter.svg#twitter"></use>
 					</svg>
-					&nbsp;
+					<span class="sr-only">Twitter</span>
 				</a>
 			</li>
 			<li>
@@ -51,14 +51,14 @@
 					<svg class="footer__social-icon">
 						<use href="../assets/images/icon-pinterest.svg#pinterest"></use>
 					</svg>
-					&nbsp;
+					 <span class="sr-only">Pinterest</span>
 				</a>
 			</li>
 			<li>
 				<a href="#" class="footer__social-link">
 					<svg class="footer__social-icon">
 						<use href="../assets/images/icon-instagram.svg#instagram"></use></svg
-					>&nbsp;
+					><span class="sr-only">Instagram</span>
 				</a>
 			</li>
 		</ul>
