@@ -1,25 +1,27 @@
 <template>
-	<form class="form" @submit.prevent="shortener(value)">
-		<div>
-			<div class="form__shortener">
-				<input
-					class="form-input"
-					type="url"
-					name="link"
-					id="link"
-					placeholder="shorten a url here"
-					aria-label="input a url"
-					v-model="value"
-				/>
-				<button class="form-btn btn">
-					{{ buttonText }}
-					<p v-if="loading" class="loading"></p>
-				</button>
+	<div class="form">
+		<form class="" @submit.prevent="shortener($event, value)">
+			<div>
+				<div class="form__shortener">
+					<input
+						class="form-input"
+						type="url"
+						name="link"
+						id="link"
+						placeholder="shorten a url here"
+						aria-label="input a url"
+						v-model="value"
+					/>
+					<button class="form-btn btn">
+						{{ buttonText }}
+						<p v-if="loading" class="loading"></p>
+					</button>
+				</div>
+				<SlideXLeftTransition :delay="100">
+					<p v-if="error" class="error">Please enter a valid link</p>
+				</SlideXLeftTransition>
 			</div>
-			<SlideXLeftTransition :delay="100">
-				<p v-if="error" class="error">Please enter a valid link</p>
-			</SlideXLeftTransition>
-		</div>
+		</form>
 		<SlideYUpTransition group>
 			<div v-for="(link, index) in links" :key="index" class="form__links">
 				<p class="form__links-main">
@@ -29,11 +31,20 @@
 					<p>
 						<a :href="link.shortenedUrl" class="form__links-copy-link no-decoration">{{ link.shortenedUrl }}</a>
 					</p>
-					<button class="form__links-copyBtn btn" @click.prevent="">Copy</button>
+					<button
+						class="form__links-copyBtn btn"
+						:class="[copied === true ? 'copied' : '']"
+						v-clipboard:copy="link.shortenedUrl"
+						v-clipboard:success="onCopy"
+						v-clipboard:error="onError"
+					>
+						<span v-if="!loading && !copied">Copy</span>
+						<span v-if="copied">Copied!</span>
+					</button>
 				</div>
 			</div>
 		</SlideYUpTransition>
-	</form>
+	</div>
 </template>
 
 <script>
@@ -51,6 +62,8 @@ export default {
 			error: false,
 			loading: false,
 			buttonText: 'Shorten it!',
+			shortenedUrl: '',
+			copied: false,
 		};
 	},
 	validations: {
@@ -60,7 +73,7 @@ export default {
 		},
 	},
 	methods: {
-		async shortener(value) {
+		async shortener(event, value) {
 			this.$v.$touch();
 			if (this.$v.$invalid) {
 				this.showError();
@@ -73,16 +86,25 @@ export default {
 					this.buttonText = 'Shortened!';
 					setTimeout(() => {
 						this.buttonText = 'Shorten it!';
-					}, 1000);
+					}, 1200);
+					this.shortenedUrl = `https://rel.ink/${request.data.hashid}`;
+					const mainUrl = request.data.url.length <= 20 ? request.data.url : `${request.data.url.slice(0, 30)}...`;
 					this.links.push({
 						shortenedUrl: `https://rel.ink/${request.data.hashid}`,
-						mainUrl: `${request.data.url}`,
+						mainUrl,
 					});
+					localStorage.setItem('links', JSON.stringify(this.links));
 				} catch (error) {
 					this.showError();
 					console.log(error);
 				}
 			}
+		},
+		onCopy() {
+			this.copied = true;
+			setTimeout(() => {
+				this.copied = false;
+			}, 2500);
 		},
 		showError() {
 			this.error = true;
@@ -90,10 +112,19 @@ export default {
 				this.error = false;
 			}, 2000);
 		},
+		onError() {
+			alert('Sorry, there was an error copying that link. please reload!');
+		},
+		getLinks() {
+			if (localStorage.getItem('links')) this.links = JSON.parse(localStorage.getItem('links'));
+		},
 	},
 	components: {
 		SlideYUpTransition,
 		SlideXLeftTransition,
+	},
+	mounted() {
+		this.getLinks();
 	},
 };
 </script>
@@ -110,7 +141,7 @@ export default {
 		background-size: cover;
 		border-radius: var(--border);
 		padding: 6.5rem;
-		margin: -6rem auto;
+		margin: -10rem auto;
 		display: flex;
 		align-items: center;
 		justify-content: space-around;
@@ -185,6 +216,10 @@ export default {
 	animation: spin 0.5s linear infinite;
 }
 
+.copied {
+	background: var(--color-secondary);
+}
+
 @keyframes spin {
 	to {
 		transform: rotate(360deg);
@@ -206,13 +241,17 @@ export default {
 	.form {
 		&__links,
 		&__links-copy {
-			flex-direction: column;
+			display: block;
 		}
 
 		&__links {
 			&-copy-link {
-				padding: 0.5em;
-				border-top: 1px solid var(--color-secondary);
+			}
+
+			&-copy {
+				& > * {
+					margin: 0.5em 0;
+				}
 			}
 		}
 	}
@@ -234,9 +273,25 @@ export default {
 			padding: 1rem 2.5rem;
 		}
 
-		&__links,
-		&__links-copy {
-			padding: 0.6em;
+		&__links {
+			padding: 1em;
+			width: 90%;
+			margin: 1rem auto;
+
+			&-copy {
+				border-top: 2px solid var(--color-darkViolet);
+			}
+
+			&-copyBtn {
+				display: block;
+				margin: 0 auto;
+				padding: 0.6em 1em;
+				width: 87%;
+			}
+
+			&-main {
+				margin-bottom: 1.2rem;
+			}
 		}
 	}
 }

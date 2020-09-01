@@ -39,7 +39,7 @@ export default {
 
 <style lang="scss" scoped>
 .hero {
-	padding-bottom: 8%;
+	padding-bottom: 10%;
 	&__content {
 		display: flex;
 		margin-left: 5rem;
@@ -135,6 +135,8 @@ export default {
 
 @media only screen and (max-width: 37.5em) {
 	.hero {
+		padding-bottom: 33%;
+
 		&__title,
 		&__text {
 			text-align: center;
