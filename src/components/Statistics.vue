@@ -24,7 +24,7 @@
 
 		<div class="statistics__cta">
 			<h3 class="statistics__cta-title">{{ cta.title }}</h3>
-			<a href="" class="statistics__cta-btn btn no-decoration" @click.prevent="dummy">{{ cta.btnText }}</a>
+			<a href="#shorten" class="statistics__cta-btn btn no-decoration" >{{ cta.btnText }}</a>
 		</div>
 	</section>
 </template>

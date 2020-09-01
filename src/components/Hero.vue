@@ -16,17 +16,7 @@
 			</div>
 		</div>
 
-		<!-- <form class="hero__form">
-			<input
-				class="hero__form-input"
-				type="url"
-				name="link"
-				id="link"
-				placeholder="shorten a url here"
-				aria-label="input a url"
-			/>
-			<button class="hero__form-btn btn">Shorten it!</button>
-		</form> -->
+		
 	</section>
 </template>
 
@@ -86,34 +76,6 @@ export default {
 		margin-left: 2rem;
 	}
 
-	// &__form {
-	// 	background-image: url('../assets/images/bg-shorten-desktop.svg');
-	// 	background-color: var(--color-secondary);
-	// 	background-size: cover;
-	// 	border-radius: var(--border);
-	// 	padding: 2.5rem;
-	// 	max-width: 60em;
-	// 	margin: 3rem auto;
-	// 	display: flex;
-	// 	align-items: center;
-	// 	justify-content: space-around;
-
-	// 	&-input {
-	// 		padding: 0.8em 1.5em;
-	// 		flex: 1;
-	// 		font-size: 1.5rem;
-	// 		color: var(--color-gray-1);
-	// 	}
-
-	// 	&-input,
-	// 	&-btn {
-	// 		margin: 1rem;
-	// 		border-radius: var(--border);
-	// 		outline: none;
-	// 		border: none;
-	// 		font-family: Poppins, sans-serif;
-	// 	}
-	// }
 }
 
 @media only screen and (max-width: 62.5em) {

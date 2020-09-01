@@ -35,6 +35,7 @@
 					<svg class="footer__social-icon">
 						<use href="../assets/images/icon-facebook.svg#facebook"></use>
 					</svg>
+					&nbsp;
 				</a>
 			</li>
 			<li>
@@ -42,6 +43,7 @@
 					<svg class="footer__social-icon">
 						<use href="../assets/images/icon-twitter.svg#twitter"></use>
 					</svg>
+					&nbsp;
 				</a>
 			</li>
 			<li>
@@ -49,13 +51,14 @@
 					<svg class="footer__social-icon">
 						<use href="../assets/images/icon-pinterest.svg#pinterest"></use>
 					</svg>
+					&nbsp;
 				</a>
 			</li>
 			<li>
 				<a href="#" class="footer__social-link">
 					<svg class="footer__social-icon">
-						<use href="../assets/images/icon-instagram.svg#instagram"></use>
-					</svg>
+						<use href="../assets/images/icon-instagram.svg#instagram"></use></svg
+					>&nbsp;
 				</a>
 			</li>
 		</ul>
@@ -76,7 +79,6 @@ export default {};
 	justify-content: center;
 	align-items: flex-start;
 	flex-wrap: wrap;
-
 
 	& > * {
 		margin-top: 4rem;
@@ -134,12 +136,12 @@ export default {};
 		}
 
 		&-link {
-      color: #fff;
+			color: #fff;
 
-      &:hover {
-        color: var(--color-primary);
-      }
-    }
+			&:hover {
+				color: var(--color-primary);
+			}
+		}
 
 		& > * {
 			margin-left: 1em;
@@ -160,8 +162,8 @@ ul {
 		}
 
 		&__links {
-		margin: 1em 2em;
-	}
+			margin: 1em 2em;
+		}
 	}
 }
 
@@ -170,10 +172,8 @@ ul {
 		flex-direction: column;
 
 		&__links {
-		margin: 1em auto;
-	}
+			margin: 1em auto;
+		}
 	}
 }
-
-
 </style>

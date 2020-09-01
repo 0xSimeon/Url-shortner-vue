@@ -1,5 +1,5 @@
 <template>
-	<div class="form">
+	<div class="form" id="shorten">
 		<form class="" @submit.prevent="shortener($event, value)">
 			<div>
 				<div class="form__shortener">
@@ -245,8 +245,6 @@ export default {
 		}
 
 		&__links {
-			&-copy-link {
-			}
 
 			&-copy {
 				& > * {
