@@ -33,13 +33,11 @@
 					</p>
 					<button
 						class="form__links-copyBtn btn"
-						:class="[copied === true ? 'copied' : '']"
 						v-clipboard:copy="link.shortenedUrl"
 						v-clipboard:success="onCopy"
 						v-clipboard:error="onError"
 					>
-						<span v-if="!loading && !copied">Copy</span>
-						<span v-if="copied">Copied!</span>
+						<span v-if="!loading && !link.copied">Copy</span>
 					</button>
 				</div>
 			</div>
@@ -100,10 +98,12 @@ export default {
 				}
 			}
 		},
-		onCopy() {
-			this.copied = true;
+		onCopy(event) {
+			event.trigger.innerText = 'Copied';
+			event.trigger.classList.add('copied');
 			setTimeout(() => {
-				this.copied = false;
+				event.trigger.innerText = 'Copy';
+				event.trigger.classList.remove('copied');
 			}, 2500);
 		},
 		showError() {
